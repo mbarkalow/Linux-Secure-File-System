@@ -2,6 +2,7 @@
 CS419 File System Security Project
 
 Project Description:
+
 • A protected file system
 
 • For a given folder and files inside, the system only allows the account Alice to use certain programs to 
