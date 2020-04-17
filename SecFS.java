@@ -40,10 +40,10 @@ public class SecFS{
           }
         }
       } else if(Split_Commands[0].equals("create")){
-				String fileName = Split_Commands[1];
-        System.out.println("Creating file in SecFS...");
-				new File(fileName).mkdir();
-				System.out.println("Created file " + fileName + " in SecFS...");
+				String dirName = Split_Commands[1];
+        System.out.println("Creating directory in SecFS...");
+				new File(dirName).mkdir();
+				System.out.println("Created directory " + dirName + " in SecFS...");
       } else if(Split_Commands[0].equals("exit")){
         System.out.println("Exiting SecFS console now...");
         System.exit(0);
