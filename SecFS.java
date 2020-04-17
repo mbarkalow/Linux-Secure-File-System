@@ -24,7 +24,8 @@ public class SecFS{
 				System.out.println("************************************************************");
 				System.out.println("**  1. list ## To get the list of files in SecFS           **");
 				System.out.println("**  2. create dir_name ## To create a directory in SecFS   **");
-				System.out.println("**  3. exit ## To disconnect from SecFS                    **");
+				System.out.println("**	3. read file_name	## To read file	contents						 **");
+				System.out.println("**  4. exit ## To disconnect from SecFS                    **");
 				System.out.println("************************************************************");
 
 			} else if(Split_Commands[0].equals("list")){
@@ -39,7 +40,26 @@ public class SecFS{
             System.out.println("--" + f.getName());
           }
         }
-      } else if(Split_Commands[0].equals("create")){
+      } else if (Split_Commands[0].equals("read")) {
+				String fileName = Split_Commands[1];
+				File file = new File(fileName);
+				try {
+					BufferedReader br = new BufferedReader(new FileReader(file));
+
+					String str;
+					while ((str = br.readLine()) != null) {
+						System.out.println(str);
+					}
+				} catch (Exception e) {
+					System.out.println("Error: " + e);
+				}
+
+			}
+
+
+
+
+			else if(Split_Commands[0].equals("create")){
 				String dirName = Split_Commands[1];
         System.out.println("Creating directory in SecFS...");
 				new File(dirName).mkdir();
