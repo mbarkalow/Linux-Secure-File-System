@@ -39,18 +39,21 @@ public class SecFS{
 						System.out.println("--" + f.getName());
 					}
 				}
-			} else if(Split_Commands[0].equals("create")){
-						String dirName = Split_Commands[1];
-				System.out.println("Creating directory in SecFS...");
-						new File(dirName).mkdir();
-						System.out.println("Created directory " + dirName + " in SecFS...");
-			} else if(Split_Commands[0].equals("exit")){
-				System.out.println("Exiting SecFS console now...");
-				System.exit(0);
-			}
+			} 
+				else if(Split_Commands[0].equals("create")){
+					String dirName = Split_Commands[1];
+					System.out.println("Creating directory in SecFS...");
+					new File(dirName).mkdir();
+					System.out.println("Created directory " + dirName + " in SecFS...");
+				} 
+				
+				else if(Split_Commands[0].equals("exit")){
+					System.out.println("Exiting SecFS console now...");
+					Scan.close();
+					System.exit(0);
+				}
 		}
-
-
+			
 	}
 
 }
