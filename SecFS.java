@@ -12,6 +12,7 @@ public class SecFS{
 		System.out.println("Connected.");
     	System.out.println("Welcome " + user);
 		Scanner Scan = new Scanner(System.in);
+		Runtime rs = Runtime.getRuntime();
 		while(true){
 
 			System.out.print("$> "); //Prompt
@@ -27,31 +28,48 @@ public class SecFS{
 				System.out.println("**  3. exit ## To disconnect from SecFS                    **");
 				System.out.println("************************************************************");
 
-			} else if(Split_Commands[0].equals("list")){
+			} 
+			
+			else if(Split_Commands[0].equals("list")){
         		System.out.println("Listing Directories and Files in SecFS...");
 				System.out.println("************************************************************");
 				File curDir = new File(".");
 				File[] filesList = curDir.listFiles();
 				for(File f : filesList){
-					if(f.isDirectory())
+					if(f.isDirectory()){
 						System.out.println(f.getName());
+					}
 					if(f.isFile()){
 						System.out.println("--" + f.getName());
 					}
 				}
 			} 
-				else if(Split_Commands[0].equals("create")){
-					String dirName = Split_Commands[1];
-					System.out.println("Creating directory in SecFS...");
-					new File(dirName).mkdir();
-					System.out.println("Created directory " + dirName + " in SecFS...");
-				} 
+
+			else if(Split_Commands[0].equals("create")){
+				String dirName = Split_Commands[1];
+				System.out.println("Creating directory in SecFS...");
+				new File(dirName).mkdir();
+				System.out.println("Created directory " + dirName + " in SecFS...");
+			} 
+
+			else if(Split_Commands[0].equals("write")){
+				System.out.println("Writing a file using notepad ...");
+				try {
+					rs.exec("notepad");
+					
+					}
+					catch (IOException e) {
+					System.out.println(e);
+					}
+				System.out.println("File created...");
+			} 
 				
-				else if(Split_Commands[0].equals("exit")){
-					System.out.println("Exiting SecFS console now...");
-					Scan.close();
-					System.exit(0);
-				}
+			else if(Split_Commands[0].equals("exit")){
+				System.out.println("Exiting SecFS console now...");
+				Scan.close();
+				System.exit(0);
+			}
+
 		}
 			
 	}
