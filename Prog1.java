@@ -3,9 +3,10 @@ import java.util.*;
 
 public class Prog1
 {
-	private static String curDir = "Project";
+	private static String curDir = "ComputerSecurityFileSystemProject";
 	private static ProcessBuilder builder = new ProcessBuilder();
-	private static File aliceDir = new File("/home/mark/Documents/cs419/Project/AliceFolder");
+	private static String path = System.getProperty("user.dir")+"/AliceFolder";
+	private static File aliceDir = new File(path);
 	private static File bashDir = new File("/bin/bash");
 	
 	private static ArrayList<String> stringCommands = new ArrayList();
@@ -41,6 +42,7 @@ public class Prog1
 
 			else if(split_commands[0].equals("exit"))
 			{
+				scan.close();
         		System.out.println("Exiting console now...");
         		return;
 			}
@@ -66,7 +68,12 @@ public class Prog1
 			if(x.length == 1)
 			{
 				//return "ls";
-				buildArgs = buildArgs.concat("ls");
+				if(x[0].equals("list")){
+					buildArgs = buildArgs.concat("ls");
+				}
+				else{
+					buildArgs = buildArgs.concat("invalid");
+				}
 				//buildArgs = buldArgs.concat(" ");
 			}
 			else if(x.length == 2)
@@ -77,15 +84,24 @@ public class Prog1
 				}
 				else
 				{
-					buildArgs = buildArgs.concat("rm " + x[1]);
+					if(x[0].equals("delete")){
+						buildArgs = buildArgs.concat("rm " + x[1]);
+					}
+					else{
+						buildArgs = buildArgs.concat("invalid");
+					}
 				}
 				//buldArgs = buildArgs.concat(x[0]);
 				//buildArgs = buildArgs.concat(" ");
 				//buildArgs = buldArgs.concat(x[1]);
 			}
 			else if(x.length == 3)
-			{
-				buildArgs = buildArgs.concat(x[2] + " " + x[1]);
+			{	
+				if(x[0].equals("edit")){
+					buildArgs = buildArgs.concat(x[2] + " " + x[1]);
+				}else{
+					buildArgs = buildArgs.concat("invalid");
+				}
 				/*buildArgs = buildArgs.concat(x[0]);
 				buildArgs = buildArgs.concat(" ");
 				buildArgs = buildArgs.concat(x[1]);
