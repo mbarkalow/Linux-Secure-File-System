@@ -56,7 +56,6 @@ public class SecFS{
 				System.out.println("Writing a file using notepad ...");
 				try {
 					rs.exec("notepad");
-					
 					}
 					catch (IOException e) {
 					System.out.println(e);
