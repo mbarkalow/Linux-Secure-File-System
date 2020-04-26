@@ -73,10 +73,9 @@ public class SecFS{
 				Process proc = Runtime.getRuntime().exec(comm);
         			System.out.println("Removed file " + fname + " from SecFS...");
       			}else if(Split_Commands[0].equals("write")){ //To write in a file in SecFS
-				//THIS DOESNT WORK YET. CAN USE NOTEPAD METHOD PROVIDED BY JON
-				// String fname = "SecFS/" + Split_Commands[1];
-				// String comm = "vi " + fname;
-				// Process proc = Runtime.getRuntime().exec(comm);
+				String fname = "SecFS/" + Split_Commands[1];
+				String comm = "gnome-terminal -x vi " + fname;
+				Process proc = Runtime.getRuntime().exec(comm);
       			}else if(Split_Commands[0].equals("read")){ //To read a file in SecFS
 				String fname = "SecFS/" + Split_Commands[1];
 				String comm = "cat " + fname;
