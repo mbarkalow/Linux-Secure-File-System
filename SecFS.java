@@ -28,15 +28,17 @@ public class SecFS{
 			if(Split_Commands[0].equals("help")){
 
 				System.out.println("The following are the Supported Commands");
-				System.out.println("************************************************************");
-				System.out.println("**  1. list ## To get the list of files in SecFS          **");
-				System.out.println("**  2. make dir_name ## To create a directory in SecFS    **");
-				System.out.println("**  3. create file_name ## To create a file in SecFS      **");
-				System.out.println("**  4. remove file_name ## To remove a file in SecFS      **");
-				System.out.println("**  5. write file_name ## To write in a file in SecFS     **");
-				System.out.println("**  6. read file_name ## To read a file in SecFS	      **");
-				System.out.println("**  7. exit ## To disconnect from SecFS                   **");
-				System.out.println("************************************************************");
+				System.out.println("*******************************************************************");
+				System.out.println("**  1. list ## To get the list of files in SecFS         	     **");
+				System.out.println("**  2. make dir_name ## To create a directory in SecFS   	     **");
+				System.out.println("**  3. create file_name ## To create a file in SecFS      	     **");
+				System.out.println("**  4. remove file_name ## To remove a file in SecFS      	     **");
+				System.out.println("**  5. write file_name ## To write in a file in SecFS     	     **");
+				System.out.println("**  6. read file_name ## To read a file in SecFS	      	     **");
+				System.out.println("**  7. encrypt file_name password ## To read a file in SecFS     **");
+				System.out.println("**  8. decrypt file_name password ##  To read a file in SecFS    **");
+				System.out.println("**  9. exit ## To disconnect from SecFS                   	     **");
+				System.out.println("*******************************************************************");
 
 			} else if(Split_Commands[0].equals("list")){
 				File curDir = new File("SecFS/");
@@ -84,7 +86,27 @@ public class SecFS{
         			while((line = reader.readLine()) != null) {
           				System.out.print(line + "\n");
         			}
-      			}else if(Split_Commands[0].equals("exit")){ //To disconnect from SecFS
+      			}else if (Split_Commands[0].equals("encrypt")){
+				String fname = Split_Commands[1];
+				String password = Split_Commands[2];
+				String[] name = fname.split(".");
+				String out = fname.substring(0, fname.length()-4) + ".zip";
+				System.out.println("out: " + out);
+				String comm = "cd SecFS && zip --password " + password + " " + out + " " + fname;
+				Process  pr = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", comm});
+				String c = "rm SecFS/" + fname;
+				System.out.println(c);
+				Process p = Runtime.getRuntime().exec(c);
+			}else if (Split_Commands[0].equals("decrypt")){
+				String fname = Split_Commands[1];
+				String password = Split_Commands[2];
+				String comm = "cd SecFS && unzip -P " + password + " " + fname;
+				System.out.println(comm);
+				Process  pr = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", comm});
+				String c = "rm SecFS/" + fname;
+				System.out.println(c);
+				Process p = Runtime.getRuntime().exec(c);
+			}else if(Split_Commands[0].equals("exit")){ //To disconnect from SecFS
         			System.out.println("Exiting SecFS console now...");
         			System.exit(0);
       			}
