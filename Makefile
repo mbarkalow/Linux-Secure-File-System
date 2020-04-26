@@ -1,4 +1,4 @@
-sec:
+all:
 	javac SecFS.java
 	javac Prog1.java
 

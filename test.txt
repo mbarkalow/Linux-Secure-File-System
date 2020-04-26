@@ -1,0 +1,12 @@
+This file is made
+to test
+the read
+function
+!
+/
+?
+.
+;
+"
+"
+test
