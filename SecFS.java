@@ -3,7 +3,7 @@ import java.io.*;
 
 public class SecFS{
 
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args) throws IOException, InterruptedException{
 
 		String user;
 		//getting user and storing
@@ -93,7 +93,8 @@ public class SecFS{
 				String out = fname.substring(0, fname.length()-4) + ".zip";
 				System.out.println("out: " + out);
 				String comm = "cd SecFS && zip --password " + password + " " + out + " " + fname;
-				Process  pr = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", comm});
+				Process pre = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", comm});
+				pre.waitFor();
 				String c = "rm SecFS/" + fname;
 				System.out.println(c);
 				Process p = Runtime.getRuntime().exec(c);
@@ -102,7 +103,8 @@ public class SecFS{
 				String password = Split_Commands[2];
 				String comm = "cd SecFS && unzip -P " + password + " " + fname;
 				System.out.println(comm);
-				Process  pr = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", comm});
+				Process prd = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", comm});
+				prd.waitFor();
 				String c = "rm SecFS/" + fname;
 				System.out.println(c);
 				Process p = Runtime.getRuntime().exec(c);
