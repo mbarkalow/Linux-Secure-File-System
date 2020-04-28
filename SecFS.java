@@ -28,17 +28,17 @@ public class SecFS{
 			if(Split_Commands[0].equals("help")){
 
 				System.out.println("The following are the Supported Commands");
-				System.out.println("*******************************************************************");
+				System.out.println("***********************************************************************");
 				System.out.println("**  1. list ## To get the list of files in SecFS         	     **");
 				System.out.println("**  2. make dir_name ## To create a directory in SecFS   	     **");
 				System.out.println("**  3. create file_name ## To create a file in SecFS      	     **");
 				System.out.println("**  4. remove file_name ## To remove a file in SecFS      	     **");
 				System.out.println("**  5. write file_name ## To write in a file in SecFS     	     **");
 				System.out.println("**  6. read file_name ## To read a file in SecFS	      	     **");
-				System.out.println("**  7. encrypt file_name password ## To read a file in SecFS     **");
-				System.out.println("**  8. decrypt file_name password ##  To read a file in SecFS    **");
+				System.out.println("**  7. encrypt file_name password ## To read a file in SecFS         **");
+				System.out.println("**  8. decrypt file_name password ##  To read a file in SecFS        **");
 				System.out.println("**  9. exit ## To disconnect from SecFS                   	     **");
-				System.out.println("*******************************************************************");
+				System.out.println("***********************************************************************");
 
 			} else if(Split_Commands[0].equals("list")){
 				File curDir = new File("SecFS/");
@@ -86,6 +86,10 @@ public class SecFS{
           				System.out.print(line + "\n");
         			}
       			}else if (Split_Commands[0].equals("encrypt")){
+				if(Split_Commands.length < 3){
+					System.out.println("Usage: encrypt <file> <password>");
+					continue;
+				}
 				String fname = Split_Commands[1];
 				String password = Split_Commands[2];
 				String[] name = fname.split(".");
@@ -98,6 +102,10 @@ public class SecFS{
 				System.out.println(c);
 				Process p = Runtime.getRuntime().exec(c);
 			}else if (Split_Commands[0].equals("decrypt")){
+				if(Split_Commands.length < 3){
+                                        System.out.println("Usage: decrypt <file> <password>");
+                                        continue;
+                                }
 				String fname = Split_Commands[1];
 				String password = Split_Commands[2];
 				String comm = "cd SecFS && unzip -P " + password + " " + fname;
