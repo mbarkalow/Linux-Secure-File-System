@@ -1,6 +1,12 @@
 # ComputerSecurityFileSystemProject
 CS419 File System Security Project
 
+
+ORDER FOR VIDEOS:
+1) MarkFinalVideo.mp4
+2) jeremy_final.mp4
+3) SecFS_DEMO.mp4
+
 Project Description:
 
 • A protected file system
