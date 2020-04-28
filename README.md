@@ -17,6 +17,8 @@ Project Description:
 
 Usage:
 
+For SecFS.java:
+
 TO COMPILE THE PROGRAM:
   $> make
 
